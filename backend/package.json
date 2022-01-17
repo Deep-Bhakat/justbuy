@@ -1,10 +1,10 @@
 {
   "name": "justbuy",
   "version": "1.0.0",
-  "description": "A Ecommerse Site",
-  "main": "index.js",
+  "description": "A Ecommerce Site",
+  "main": "app.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "dev": "nodemon app.js"
   },
   "repository": {
     "type": "git",
@@ -19,7 +19,9 @@
   "dependencies": {
     "dotenv": "^14.1.0",
     "express": "^4.17.2",
-    "mongoose": "^6.1.6",
+    "mongoose": "^6.1.6"
+  },
+  "devDependencies": {
     "nodemon": "^2.0.15"
   }
 }
