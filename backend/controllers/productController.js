@@ -1,5 +1,6 @@
 const Product = require('../models/product');
 const ErrorHandler = require('../utils/errorHandler');
+const APIFeatures = require('../utils/apiFeatures');
 exports.createProduct = async (req,res,next) =>{
     console.log(req.body);
 
@@ -17,7 +18,11 @@ exports.createProduct = async (req,res,next) =>{
 
 exports.getProducts = async (req,res,next) =>{
     try{
-        const products = await Product.find();
+        //implementing the search functionality
+        const searchFeature = new APIFeatures(Product.find(), req.query)
+                               .search(); 
+
+        const products = await searchFeature.query;
         res.status(200).json({
             success:true,
             products,
