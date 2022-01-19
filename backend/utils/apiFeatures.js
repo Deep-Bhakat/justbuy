@@ -14,6 +14,20 @@ class APIFeatures {
         this.query = this.query.find({...keyword});
         return this;
     }
+    filter(){
+        const queryCopy = { ...this.queryStr };
+
+        //Removing unrelated fields to filter
+        const removingFields = ['keyword','page','limit'];
+        removingFields.forEach(el => delete queryCopy[el]);
+
+        //Advanced Filter for prices and ratings 
+        let queryStr = JSON.stringify(queryCopy);
+        queryStr = queryStr.replace(/\b(gt|gte|lt|lte)\b/g, match => `$${match}`);
+        queryStr = JSON.parse(queryStr);
+        this.query = this.query.find(queryStr);
+        return this;
+    }
 }
 
 module.exports = APIFeatures;

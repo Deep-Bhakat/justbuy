@@ -20,7 +20,8 @@ exports.getProducts = async (req,res,next) =>{
     try{
         //implementing the search functionality
         const searchFeature = new APIFeatures(Product.find(), req.query)
-                               .search(); 
+                               .search()
+                               .filter(); 
 
         const products = await searchFeature.query;
         res.status(200).json({
