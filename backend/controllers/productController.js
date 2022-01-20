@@ -46,7 +46,7 @@ exports.getProduct = async (req,res,next) =>{
         const { prodId } = req.params;
         const product = await Product.findById(prodId);
         if(!product){
-            next(new ErrorHandler('Product Not Found',404));
+            return next(new ErrorHandler('Product Not Found',404));
         }
         res.status(200).json({
             success:true,
@@ -62,7 +62,7 @@ exports.updateProduct = async (req,res,next) =>{
     try{
     let product = await Product.findById(prodId);
     if(!product){
-        next(new ErrorHandler('Product Not Found',404));
+       return next(new ErrorHandler('Product Not Found',404));
     }
     product = await Product.findByIdAndUpdate(prodId,req.body,{
         new:true,
@@ -86,7 +86,7 @@ exports.deleteProduct = async (req,res,next) =>{
     try{
         const product = Product.findById(prodId);
         if(!product){
-            next(new ErrorHandler('Product Not Found',404));
+          return next(new ErrorHandler('Product Not Found',404));
         }
 
         await Product.findByIdAndRemove(prodId);
