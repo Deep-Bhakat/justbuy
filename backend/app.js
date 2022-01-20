@@ -2,6 +2,7 @@ const express = require('express')
 const dotenv = require('dotenv')
 const connectDatabase = require('./database');
 const productRoutes = require('./routes/productRoute');
+const userRoutes = require('./routes/userRoute');
 const errorHandlerMiddleware = require('./middleware/errorHandler');
 const app = express()
 
@@ -14,6 +15,7 @@ connectDatabase();
 app.use(express.json());
 //setting the routes
 app.use('/api',productRoutes);
+app.use('/api',userRoutes);
 
 //setting up error handling
 app.use(errorHandlerMiddleware);
