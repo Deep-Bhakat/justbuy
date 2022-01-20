@@ -1,5 +1,6 @@
 const express = require('express')
 const dotenv = require('dotenv')
+const cookieParser = require('cookie-parser');
 const connectDatabase = require('./database');
 const productRoutes = require('./routes/productRoute');
 const userRoutes = require('./routes/userRoute');
@@ -13,6 +14,8 @@ dotenv.config({path:'config/config.env'});
 connectDatabase();
 //for json
 app.use(express.json());
+//for cookies
+app.use(cookieParser());
 //setting the routes
 app.use('/api',productRoutes);
 app.use('/api',userRoutes);
