@@ -1,6 +1,7 @@
 const User = require('../models/user');
 const ErrorHandler = require('../utils/errorHandler');
 const bcrypt = require('bcryptjs');
+const sendToken = require('../utils/jwtToken');
 
 exports.registerUser = async (req,res,next) =>{
     try{
@@ -17,13 +18,8 @@ exports.registerUser = async (req,res,next) =>{
         }
     });   
 
-    const token = user.createJwtToken();
+    sendToken(user,200,res,'User registered successfully');
 
-    res.status(201).json({
-        success:true,
-        token,
-        message:'User registered successfully'
-    });
     }catch(err){
         return next(new ErrorHandler(err.message,500));
     }
@@ -51,17 +47,7 @@ exports.loginUser = async(req,res,next)=>{
             return next(new ErrorHandler('Password is invalid',400));          
         }
 
-        const token = user.createJwtToken();
-
-        if(!token){
-            return next(new ErrorHandler('Token generation error',500));  
-        }
-
-        res.status(200).json({
-            success:true,
-            token,
-            message:'Login Successful'
-        });
+        sendToken(user,200,res,'Login Successful');
 
     }catch(err){
         return next(new ErrorHandler(err.message,500));
