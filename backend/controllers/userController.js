@@ -53,3 +53,19 @@ exports.loginUser = async(req,res,next)=>{
         return next(new ErrorHandler(err.message,500));
     }
 };
+
+exports.logoutUser = async (req,res,next) =>{
+    try{
+    res.cookie('token',null,{
+        expires:new Date(Date.now()),
+        httpOnly:true
+    });
+
+    res.status(200).json({
+        success:true,
+        message:'Logged Out'
+    })
+}catch(err){
+    return next(new ErrorHandler(err.message,500));
+}
+};
