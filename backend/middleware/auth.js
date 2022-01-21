@@ -1,7 +1,7 @@
 const ErrorHandler = require("../utils/errorHandler");
 const jwt = require('jsonwebtoken');
 const User = require('../models/user');
-const isAuthenticated = async (req,res,next) =>{
+exports.isAuthenticated = async (req,res,next) =>{
     try{
     const { token } = req.cookies;
         if(!token){
@@ -17,4 +17,11 @@ const isAuthenticated = async (req,res,next) =>{
     }
 };
 
-module.exports = isAuthenticated;
+exports.authorizeRole = (...roles) => {
+        return (req,res,next) =>{
+            if(!roles.includes(req.user.role)){
+                return next(new ErrorHandler(`User with role ${req.user.role} is not authorized to access this route!`,403));
+            }
+            next();
+        }   
+}
