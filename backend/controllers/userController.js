@@ -2,6 +2,7 @@ const User = require('../models/user');
 const ErrorHandler = require('../utils/errorHandler');
 const bcrypt = require('bcryptjs');
 const sendToken = require('../utils/jwtToken');
+const sendEmail = require('../utils/sendEmail');
 
 exports.registerUser = async (req,res,next) =>{
     try{
@@ -52,6 +53,45 @@ exports.loginUser = async(req,res,next)=>{
     }catch(err){
         return next(new ErrorHandler(err.message,500));
     }
+};
+
+exports.forgotPassword = async (req,res,next) =>{
+    const { email } = req.body;
+        //find user
+    const user = await User.findOne({email:email});
+
+    if(!user){
+        return next(new ErrorHandler('User not found',404));         
+    }
+
+    //get reset token
+    const resetToken = user.getResetPasswordToken();
+
+    await user.save({validateBeforeSave: false});
+
+    const resetPasswordUrl = `${req.protocol}://${req.get('host')}/api/forgotPassword/${resetToken}`;
+    const message = `Your password reset token is as follows:\n\n${resetPasswordUrl}\n\nIf not requested for this email kindly ignore it.`;
+
+    try{
+        await sendEmail({
+            email:user.email,
+            subject: 'JustBuy Reset Password',
+            message
+        });
+
+        res.status(200).json({
+            success:true,
+            message:`Email Sent to: ${user.email}`
+        });
+    }catch(err){
+        user.resetPasswordToken = undefined;
+        user.resetPasswordExpire = undefined;
+        await user.save({validateBeforeSave:false});
+        return next(new ErrorHandler(err.message,500));
+    
+    }
+
+   
 };
 
 exports.logoutUser = async (req,res,next) =>{
