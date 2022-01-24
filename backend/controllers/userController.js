@@ -122,6 +122,20 @@ exports.resetPassword = async (req,res,next) =>{
     sendToken(user,200,res,'Password Reset Successful');
 };
 
+exports.getUser = async (req,res,next) =>{
+
+    const user = await User.findById(req.user);
+
+    if(!user){
+        return next(new ErrorHandler('No user found',500));
+    }
+    res.status(200).json({
+        success:true,
+        user,
+        message:'Fetched user details successfully.'
+    });
+};
+
 
 exports.logoutUser = async (req,res,next) =>{
     try{
