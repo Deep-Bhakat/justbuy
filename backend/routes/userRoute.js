@@ -12,7 +12,9 @@ router.post('/resetPassword/:token',userController.resetPassword);
 router.get('/me',isAuthenticated ,userController.getUser);
 router.put('/changePassword',isAuthenticated ,userController.changePassword);
 router.put('/updateProfile',isAuthenticated ,userController.updateProfile);
-router.get('/admin/users',isAuthenticated , authorizeRole('admin') ,userController.getAllUsers);
-router.get('/admin/user/:userId',isAuthenticated , authorizeRole('admin') ,userController.getUserDetails);
+router.get('/admin/users',isAuthenticated , authorizeRole('admin'), userController.getAllUsers);
+router.get('/admin/user/:userId',isAuthenticated , authorizeRole('admin'), userController.getUserDetails);
+router.put('/admin/user/:userId',isAuthenticated , authorizeRole('admin'), userController.updateUser);
+router.delete('/admin/user/:userId',isAuthenticated , authorizeRole('admin'), userController.deleteUser);
 
 module.exports = router;

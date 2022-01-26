@@ -217,7 +217,7 @@ exports.getAllUsers = async(req,res,next) =>{
 };
 
 exports.getUserDetails = async(req,res,next) =>{
-    const { userId } = req.params.userId;
+    const { userId } = req.params;
     try{
         const user = await User.findById(userId);
 
@@ -233,5 +233,49 @@ exports.getUserDetails = async(req,res,next) =>{
 
     }catch(err){
         return next(new ErrorHandler(err.message,500));     
+    }
+};
+
+
+exports.updateUser = async (req,res,next) =>{
+    const { name,email,role } = req.body;
+    const newProfile ={
+        name,
+        email,
+        role
+    };
+    //Avatar : TODO
+    
+    try{
+        const user = await User.findByIdAndUpdate(req.params.userId,newProfile,{
+            new: true,
+            runValidators: true,
+            useFindAndModify: false
+        });
+
+        res.status(200).json({
+            success:true,
+            message:'User updated successfully.'
+        });
+    }catch(err){
+        return next(new ErrorHandler(err.message,500));      
+    }
+};
+
+exports.deleteUser = async (req,res,next) =>{
+    const {userId} = req.params;
+    const user = await User.findById(userId);
+    if(!user){
+        return next(new ErrorHandler('No user found with this id',500));
+    }
+    try{
+        await User.findByIdAndDelete(userId);
+        res.status(200).json({
+            success: true,
+            message:'User deleted successfully.'
+        })
+    }catch(err){
+        return next(new ErrorHandler(err.message,500));
+  
     }
 };
