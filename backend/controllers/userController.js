@@ -136,6 +136,26 @@ exports.getUser = async (req,res,next) =>{
     });
 };
 
+exports.changePassword = async (req,res,next) =>{
+    const { oldPassword, newPassword } = req.body;
+    const user = await User.findById(req.user).select('+password');
+
+    if(!user){
+        return next(new ErrorHandler('User not found',500));
+    }
+
+    const isPasswordCorrect = await bcrypt.compare(oldPassword,user.password);
+    if(!isPasswordCorrect){
+        return next(new ErrorHandler('Old Password is incorrect',400));          
+    }
+
+    user.password = newPassword;
+    await user.save();
+
+    //send new token
+    sendToken(user,200,res,'Password changed successfully.');
+
+};
 
 exports.logoutUser = async (req,res,next) =>{
     try{
