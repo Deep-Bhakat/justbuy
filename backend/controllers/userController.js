@@ -196,3 +196,42 @@ exports.logoutUser = async (req,res,next) =>{
     return next(new ErrorHandler(err.message,500));
 }
 };
+
+
+//Admin controllers
+
+exports.getAllUsers = async(req,res,next) =>{
+
+    try{
+        const users = await User.find();
+
+        res.status(200).json({
+            success:true,
+            users,
+            message:"Fetched all users."
+        });
+
+    }catch(err){
+        return next(new ErrorHandler(err.message,500));     
+    }
+};
+
+exports.getUserDetails = async(req,res,next) =>{
+    const { userId } = req.params.userId;
+    try{
+        const user = await User.findById(userId);
+
+        if(!user){
+            return next(new ErrorHandler('No User found with this id',500));     
+        
+        }
+        res.status(200).json({
+            success:true,
+            user,
+            message:"Fetched user details."
+        });
+
+    }catch(err){
+        return next(new ErrorHandler(err.message,500));     
+    }
+};
