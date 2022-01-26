@@ -157,6 +157,10 @@ exports.changePassword = async (req,res,next) =>{
 
 };
 
+exports.updateProfile = async (req,res,next) =>{
+    
+};
+
 exports.logoutUser = async (req,res,next) =>{
     try{
     res.cookie('token',null,{
