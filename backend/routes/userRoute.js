@@ -11,5 +11,6 @@ router.post('/forgotPassword',userController.forgotPassword);
 router.post('/resetPassword/:token',userController.resetPassword);
 router.get('/me',isAuthenticated ,userController.getUser);
 router.put('/changePassword',isAuthenticated ,userController.changePassword);
+router.put('/updateProfile',isAuthenticated ,userController.updateProfile);
 
 module.exports = router;

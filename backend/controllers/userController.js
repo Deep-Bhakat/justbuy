@@ -158,7 +158,27 @@ exports.changePassword = async (req,res,next) =>{
 };
 
 exports.updateProfile = async (req,res,next) =>{
+    const { name,email } = req.body;
+    const newProfile ={
+        name,
+        email
+    };
+    //Avatar : TODO
     
+    try{
+        const user = await User.findByIdAndUpdate(req.user,newProfile,{
+            new: true,
+            runValidators: true,
+            useFindAndModify: false
+        });
+
+        res.status(200).json({
+            success:true,
+            message:'User profile updated successfully.'
+        });
+    }catch(err){
+        return next(new ErrorHandler(err.message,500));      
+    }
 };
 
 exports.logoutUser = async (req,res,next) =>{
