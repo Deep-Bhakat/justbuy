@@ -4,6 +4,8 @@ const cookieParser = require('cookie-parser');
 const connectDatabase = require('./database');
 const productRoutes = require('./routes/productRoute');
 const userRoutes = require('./routes/userRoute');
+const orderRoutes = require('./routes/orderRoute');
+
 const errorHandlerMiddleware = require('./middleware/errorHandler');
 const app = express()
 
@@ -19,6 +21,7 @@ app.use(cookieParser());
 //setting the routes
 app.use('/api',productRoutes);
 app.use('/api',userRoutes);
+app.use('/api',orderRoutes);
 
 //setting up error handling
 app.use(errorHandlerMiddleware);
