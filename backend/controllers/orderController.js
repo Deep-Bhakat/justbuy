@@ -51,7 +51,7 @@ exports.getOrder = async(req,res,next) =>{
     });
 };
 
-exports.getUserOrders = async (req,res,next) => {
+exports.myOrders = async (req,res,next) => {
     const userId = req.user._id;
 
     const orders = await Order.find({user:userId});
