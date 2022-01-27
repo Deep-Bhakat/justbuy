@@ -66,4 +66,24 @@ exports.myOrders = async (req,res,next) => {
         message:'Orders fetched'
     })
 
-}
+};
+
+exports.allOrders = async(req,res,next) =>{
+    const orders = await Order.find();
+
+    if(!orders){
+        return next(new ErrorHandler('Orders not found',500));      
+    }
+
+    let totalAmount = 0;
+    orders.forEach(order =>{
+        totalAmount+= order.totalPrice;
+    });
+
+    res.status(200).json({
+        success: true,
+        totalAmount,
+        orders,
+        message:'Orders fetched successfully.'
+    });
+};
