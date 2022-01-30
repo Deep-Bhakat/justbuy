@@ -12,8 +12,6 @@ const Header = () => {
                     <div className="hidden w-full md:flex sm:w-fit md:order-2" id="mobile-menu-3">
                         <div className="flex flex-col mt-4 md:flex-row md:space-x-2 md:mt-0 md:text-sm md:font-medium sm:space-x-0 sm:flex-col">
                             <button type="button" className="text-white bg-orange-400 hover:bg-orange-500 focus:ring-4 focus:ring-orange-300 font-medium rounded-lg text-sm md:px-5 py-2.5 sm:px-1 text-center mr-1 mb-1 dark:focus:ring-orange-900">Login</button>
-                            {/* <span className="text-white text-lg mt-1">Cart</span>
-                            <span className="text-black text-center rounded bg-orange-400 text-sm m-2 h-5 w-5">2</span> */}
                             <span class="font-sans block mt-2 lg:inline-block lg:mt-2 lg:ml-6 align-middle text-white hover:text-gray-700">
                                 <a href="/" role="button" class="relative flex">
                                     <svg class="flex-1 w-8 h-8 fill-current" viewbox="0 0 24 24">
