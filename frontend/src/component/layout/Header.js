@@ -2,16 +2,17 @@ const Header = () => {
     return (
         <>
             <nav className="bg-[#232f3e] text-white border-gray-200 px-2 sm:px-4 py-2.5 rounded dark:bg-gray-800">
-                <div className="container flex flex-wrap justify-between items-center mx-auto">
+                <div className="container flex flex-wrap justify-between  items-center mx-auto">
                     <a href="/" className="flex w-2/10">
                         <span className="self-center text-lg font-semibold whitespace-nowrap dark:text-white">JustBuy</span>
                     </a>
-                    <div className="flex w-6/12 justify-between mr-3  md:mr-0 md:order-1 ">
+                    <div className="flex w-6/12 justify-between ml-2 mr-3 md:mr-0 md:order-1 ">
                         <input type="text" id="email-adress-icon" className="block p-2 pl-10 w-full text-gray-900 bg-gray-50 rounded-lg border border-gray-300 sm:text-sm focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Search..." />
                     </div>
-                    <div className="hidden w-full md:flex sm:w-fit md:order-2" id="mobile-menu-3">
-                        <div className="flex flex-col mt-4 md:flex-row md:space-x-2 md:mt-0 md:text-sm md:font-medium sm:space-x-0 sm:flex-col">
-                            <button type="button" className="text-white bg-orange-400 hover:bg-orange-500 focus:ring-4 focus:ring-orange-300 font-medium rounded-lg text-sm md:px-5 py-2.5 sm:px-1 text-center mr-1 mb-1 dark:focus:ring-orange-900">Login</button>
+                    <div className="sm:w-4/10 md:flex  md:order-2" id="mobile-menu-3">
+                        <div className="flex md:flex-row md:space-x-2  md:text-sm md:font-medium sm:space-x-0 ">
+                            {/* <button type="button" className="text-white bg-orange-400 hover:bg-orange-500 focus:ring-4 focus:ring-orange-300 font-medium rounded-lg text-sm md:px-5 py-2.5 sm:px-1 text-center mr-1 mb-1 dark:focus:ring-orange-900">Login</button> */}
+                            <img className="flex-1 mt-1  mr-1 sm:mr-2 w-8 h-8 rounded-full bg-white cursor-pointer hover:bg-gray-700" src="https://img.icons8.com/wired/64/000000/circled-user.png"/>
                             <span class="font-sans block mt-2 lg:inline-block lg:mt-2 lg:ml-6 align-middle text-white hover:text-gray-700">
                                 <a href="/" role="button" class="relative flex">
                                     <svg class="flex-1 w-8 h-8 fill-current" viewbox="0 0 24 24">
