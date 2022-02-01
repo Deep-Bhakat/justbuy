@@ -11,7 +11,6 @@ const Header = () => {
                     </div>
                     <div className="sm:w-4/10 md:flex  md:order-2" id="mobile-menu-3">
                         <div className="flex md:flex-row md:space-x-2  md:text-sm md:font-medium sm:space-x-0 ">
-                            {/* <button type="button" className="text-white bg-orange-400 hover:bg-orange-500 focus:ring-4 focus:ring-orange-300 font-medium rounded-lg text-sm md:px-5 py-2.5 sm:px-1 text-center mr-1 mb-1 dark:focus:ring-orange-900">Login</button> */}
                             <img className="flex-1 mt-1  mr-1 sm:mr-2 w-8 h-8 rounded-full bg-white cursor-pointer hover:bg-gray-700" src="https://img.icons8.com/wired/64/000000/circled-user.png"/>
                             <span class="font-sans block mt-2 lg:inline-block lg:mt-2 lg:ml-6 align-middle text-white hover:text-gray-700">
                                 <a href="/" role="button" class="relative flex">
