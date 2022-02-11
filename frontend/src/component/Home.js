@@ -1,7 +1,10 @@
 import Card from "./Card";
+import MetaDeta from "./layout/MetaDeta";
 
 const Home = () =>{
-    return <div className="h-full w-full px-10 py-2"> 
+    return <>
+    <MetaDeta title="Buy Best Products" />
+    <div className="h-full w-full px-10 py-2"> 
                 <div className="grid sm:grid-cols-1 md:grid-cols-3  gap-5 justify-center ">
                         <Card />
                         <Card />
@@ -10,6 +13,7 @@ const Home = () =>{
                         <Card />
                 </div>
     </div>
+    </>
 };
 
 export default Home;
